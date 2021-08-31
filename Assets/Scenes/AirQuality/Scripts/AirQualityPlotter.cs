@@ -31,7 +31,7 @@ public class AirQualityPlotter : MonoBehaviour
     // Bools for editor options
     public bool renderPointPrefabs = true;
     public bool renderParticles =  true;
-    public bool renderPrefabsWithColor = true;
+    private bool renderPrefabsWithColor = true;
 
     // Name of the input file, no extension
     public string inputfile;
@@ -206,6 +206,7 @@ public class AirQualityPlotter : MonoBehaviour
             float x = (Convert.ToSingle(pointList[i][xColumnName]) - xMin) / (xMax - xMin);
             float y = (Convert.ToSingle(pointList[i][yColumnName]) - yMin) / (yMax - yMin);
             float z = (Convert.ToSingle(pointList[i][zColumnName]) - zMin) / (zMax - zMin);
+           // float a = (Convert.ToSingle(pointList[i][aColumnName]) - zMin) / (zMax - zMin);
             string c = (Convert.ToString(pointList[i][cColumnName]));
             // Create vector 3 for positioning particlePoints
 			Vector3 position = new Vector3 (x, y, z) * plotScale;
@@ -298,6 +299,7 @@ public class AirQualityPlotter : MonoBehaviour
             float x = (Convert.ToSingle(pointList[i][xColumnName]) - xMin) / (xMax - xMin);
             float y = (Convert.ToSingle(pointList[i][yColumnName]) - yMin) / (yMax - yMin);
             float z = (Convert.ToSingle(pointList[i][zColumnName]) - zMin) / (zMax - zMin);
+            float a = (Convert.ToSingle(pointList[i][aColumnName]) - zMin) / (zMax - zMin);
 
             // Debug.Log("Position is " + x + y + z);
 

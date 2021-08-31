@@ -83,29 +83,29 @@ public class AirQualityHolder : MonoBehaviour
         //if 
     }
 
-    void OnMouseDown(){ 
-        ClearLog();
-        Debug.Log("The details of your selection are:");
-        Debug.Log("Ozone is " + Ozone);
-        Debug.Log("Solar.R " + SolarR);
-        Debug.Log("Wind is " + Wind);
-        Debug.Log("Temp is " + Temp);
-        Debug.Log("Month is " + Month);
-        Debug.Log("Day is " + Day);
-        Debug.Log("rand1 is " + rand1);
-        Debug.Log("rand2 is " + rand2);
-        Debug.Log("rand3 is " + rand3);
-        Debug.Log("rand4 is " + rand4);
-        Debug.Log("rand5 is " + rand5);
-    }
+    // void OnMouseDown(){ 
+    //     ClearLog();
+    //     Debug.Log("The details of your selection are:");
+    //     Debug.Log("Ozone is " + Ozone);
+    //     Debug.Log("Solar.R " + SolarR);
+    //     Debug.Log("Wind is " + Wind);
+    //     Debug.Log("Temp is " + Temp);
+    //     Debug.Log("Month is " + Month);
+    //     Debug.Log("Day is " + Day);
+    //     Debug.Log("rand1 is " + rand1);
+    //     Debug.Log("rand2 is " + rand2);
+    //     Debug.Log("rand3 is " + rand3);
+    //     Debug.Log("rand4 is " + rand4);
+    //     Debug.Log("rand5 is " + rand5);
+    // }
 
-    public void ClearLog()
-{
-    var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-    var type = assembly.GetType("UnityEditor.LogEntries");
-    var method = type.GetMethod("Clear");
-    method.Invoke(new object(), null);
-}
+//     public void ClearLog()
+// {
+//     var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+//     var type = assembly.GetType("UnityEditor.LogEntries");
+//     var method = type.GetMethod("Clear");
+//     method.Invoke(new object(), null);
+// }
 
     
 
