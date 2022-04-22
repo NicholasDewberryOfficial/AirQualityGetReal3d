@@ -35,6 +35,7 @@ public class AirQualityPlotter : MonoBehaviour
 
     // Name of the input file, no extension
     public string inputfile;
+    public Material Dressing;
 
     // Indices for columns to be assigned
     //doesnt really matter if public or private
@@ -97,10 +98,11 @@ public class AirQualityPlotter : MonoBehaviour
     private float xMin;
     private float yMin;
     private float zMin;
-
+    private float aMin;
     private float xMax;
     private float yMax;
     private float zMax;
+    private float aMax;
 
     // Number of rows
     private int rowCount;
@@ -133,8 +135,8 @@ public class AirQualityPlotter : MonoBehaviour
 
         Debug.Log("There are " + columnList.Count + " columns in the CSV");
 
-        foreach (string key in columnList)
-            Debug.Log("Column name is " + key);
+        // foreach (string key in columnList)
+        //     Debug.Log("Column name is " + key);
 
         // Assign column names according to index indicated in columnList
         xColumnName = columnList[column1];
@@ -155,12 +157,13 @@ public class AirQualityPlotter : MonoBehaviour
         xMax = FindMaxValue(xColumnName);
         yMax = FindMaxValue(yColumnName);
         zMax = FindMaxValue(zColumnName);
+        aMax = FindMaxValue(aColumnName);
 
         // Get minimums of each axis, using FindMinValue method defined below
         xMin = FindMinValue(xColumnName);
         yMin = FindMinValue(yColumnName);
         zMin = FindMinValue(zColumnName);
-            
+        aMin = FindMinValue(aColumnName);    
         // Debug.Log(xMin + " " + yMin + " " + zMin); // Write to console
 
         AssignLabels();
@@ -206,7 +209,7 @@ public class AirQualityPlotter : MonoBehaviour
             float x = (Convert.ToSingle(pointList[i][xColumnName]) - xMin) / (xMax - xMin);
             float y = (Convert.ToSingle(pointList[i][yColumnName]) - yMin) / (yMax - yMin);
             float z = (Convert.ToSingle(pointList[i][zColumnName]) - zMin) / (zMax - zMin);
-           // float a = (Convert.ToSingle(pointList[i][aColumnName]) - zMin) / (zMax - zMin);
+            float a = (Convert.ToSingle(pointList[i][aColumnName]) - aMin) / (aMax - aMin);
             string c = (Convert.ToString(pointList[i][cColumnName]));
             // Create vector 3 for positioning particlePoints
 			Vector3 position = new Vector3 (x, y, z) * plotScale;
@@ -272,9 +275,9 @@ public class AirQualityPlotter : MonoBehaviour
 
                 // }
                 // Activate emission color keyword so we can modify emission color
-                dataPoint.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                dataPoint.GetComponent<Renderer>().material = Dressing;
 
-                dataPoint.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(x, y, z, 1.0f));
+                dataPoint.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(a, (.4f), (.0f), 1.0f));
                 
             }
                                   						
@@ -296,20 +299,22 @@ public class AirQualityPlotter : MonoBehaviour
         for (int i = 0; i < pointList.Count; i++)
         {
             // Convert object from list into float
+            //float x = (Convert.ToSingle(pointList[i][xColumnName]) - xMin) / (xMax - xMin);
             float x = (Convert.ToSingle(pointList[i][xColumnName]) - xMin) / (xMax - xMin);
             float y = (Convert.ToSingle(pointList[i][yColumnName]) - yMin) / (yMax - yMin);
             float z = (Convert.ToSingle(pointList[i][zColumnName]) - zMin) / (zMax - zMin);
-            float a = (Convert.ToSingle(pointList[i][aColumnName]) - zMin) / (zMax - zMin);
+            //float a = (Convert.ToSingle(pointList[i][aColumnName]) - zMin) / (zMax - zMin);
 
             // Debug.Log("Position is " + x + y + z);
 
             // Set point location
+            //REMEMBER FOR LOCATION I NEED TO SWAP Z AND Y 
 			particlePoints[i].position = new Vector3(x, y, z) * plotScale;
-          
+
             
             // Set point color
-            particlePoints[i].startColor = new Color(x, y, z, 1.0f);
-            particlePoints[i].startSize = particleScale; 
+           particlePoints[i].startColor = new Color(x, y, z, 1.0f);
+           particlePoints[i].startSize = particleScale; 
         }
                 
     }
