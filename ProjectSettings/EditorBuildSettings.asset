@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AirQuality/AirQualityDataVIz 1.unity
     guid: 2a3bd638d1eecf642a9a99bd23121c5b
+  - enabled: 1
+    path: Assets/Scenes/AirQuality/Popupmenu dataviz.unity
+    guid: ff1d02c68a37f1a4cba046cc2539fce4
   m_configObjects: {}
